@@ -74,5 +74,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: gengetopt-windows
-          path: /build/installed
-        shell: msys2 {0}
+          path: ${{ github.workspace }}\..\build\installed
