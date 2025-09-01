@@ -49,7 +49,7 @@ jobs:
         run: |
           cd /build
           tar xf gengetopt-2.23.tar.xz
-        shell: bash
+        shell: msys2 {0}
 
       - name: Configure gengetopt
         run: |
