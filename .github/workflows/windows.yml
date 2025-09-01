@@ -29,9 +29,7 @@ jobs:
           install: >-
             mingw-w64-x86_64-gcc
             mingw-w64-x86_64-clang
-            mingw-w64-x86_64-autoconf
-            mingw-w64-x86_64-automake
-            mingw-w64-x86_64-libtool
+            mingw-w64-x86_64-autotools
             git
             wget
             tar
