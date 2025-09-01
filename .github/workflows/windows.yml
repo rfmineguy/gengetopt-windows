@@ -21,23 +21,34 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: 'Setup MSYS2'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: windows-2025
+          update: true
+          install: >-
+            git
+            base-devel
+            wget
+            tar
+
       - name: Download gengetopt
         run: |
           curl -O https://ftp.gnu.org/gnu/gengetopt/gengetopt-2.23.tar.xz
-        shell: bash
+        shell: msys2 {0}
 
       - name: Extract gengetopt
         run: |
           tar xf gengetopt-2.23.tar.xz
-        shell: bash
+        shell: msys2 {0}
 
       - name: Configure gengetopt
         run: |
           cd gengetopt-2.23
           ./configure
-        shell: bash
+        shell: msys2 {0}
 
       - name: Build gengetopt
         run: |
           make
-        shell: bash
+        shell: msys2 {0}
