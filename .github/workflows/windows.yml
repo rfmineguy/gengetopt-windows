@@ -33,24 +33,25 @@ jobs:
             git
             wget
             tar
+        shell: bash
 
       - name: Download gengetopt
         run: |
           curl -O https://ftp.gnu.org/gnu/gengetopt/gengetopt-2.23.tar.xz
-        shell: msys2 {0}
+        shell: bash
 
       - name: Extract gengetopt
         run: |
           tar xf gengetopt-2.23.tar.xz
-        shell: msys2 {0}
+        shell: bash
 
       - name: Configure gengetopt
         run: |
           cd gengetopt-2.23
           ./configure
-        shell: msys2 {0}
+        shell: bash
 
       - name: Build gengetopt
         run: |
           make
-        shell: msys2 {0}
+        shell: bash
