@@ -33,7 +33,6 @@ jobs:
             git
             wget
             tar
-        shell: bash
 
       - name: Download gengetopt
         run: |
