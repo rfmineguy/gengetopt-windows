@@ -24,7 +24,20 @@ jobs:
       - name: Download gengetopt
         run: |
           curl -O https://ftp.gnu.org/gnu/gengetopt/gengetopt-2.23.tar.xz
+        shell: bash
+
+      - name: Extract gengetopt
+        run: |
           tar xf gengetopt-2.23.tar.xz
+        shell: bash
+
+      - name: Configure gengetopt
+        run: |
           cd gengetopt-2.23
           ./configure
+        shell: bash
+
+      - name: Build gengetopt
+        run: |
+          make
         shell: bash
