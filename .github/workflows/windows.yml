@@ -21,6 +21,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Cache MSYS2 packages
+        uses: actions/cache@v3
+        with:
+          path: C:\msys64\var\cache\pacman\pkg
+          key: msys2-pacman-cache-${{ runner.os }}
+
       - name: 'Setup MSYS2'
         uses: msys2/setup-msys2@v2
         with:
@@ -67,7 +73,9 @@ jobs:
 
       - name: Package gengetopt
         run: |
-          tar -czvf gengetopt-2.23.tar.gz -C $PWD/build/gengetopt-2.23/installed
+          ls build
+          ls build/gengetopt-2.23
+          tar -czvf gengetopt-2.23.tar.gz -C $PWD/build/gengetopt-2.23/installed .
         shell: msys2 {0}
 
       - name: Upload artifact
