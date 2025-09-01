@@ -37,13 +37,13 @@ jobs:
       - name: Prepare Build Environment
         run: |
           mkdir -p /build
-        shell: bash
+        shell: msys2 {0}
 
       - name: Download gengetopt
         run: |
           cd /build
           curl -O https://ftp.gnu.org/gnu/gengetopt/gengetopt-2.23.tar.xz
-        shell: bash
+        shell: msys2 {0}
 
       - name: Extract gengetopt
         run: |
@@ -55,10 +55,10 @@ jobs:
         run: |
           cd /build/gengetopt-2.23
           ./configure
-        shell: bash
+        shell: msys2 {0}
 
       - name: Build gengetopt
         run: |
           cd /build/gengetopt-2.23
           make
-        shell: bash
+        shell: msys2 {0}
