@@ -61,13 +61,13 @@ jobs:
 
       - name: Build gengetopt
         run: |
-          cd /build/gengetopt-2.23
+          cd build/gengetopt-2.23
           make install
         shell: msys2 {0}
 
       - name: Package gengetopt
         run: |
-          cd /build/gengetopt-2.23
+          cd build/gengetopt-2.23
         shell: msys2 {0}
 
       - name: Upload artifact
