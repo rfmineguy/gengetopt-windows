@@ -24,11 +24,15 @@ jobs:
       - name: 'Setup MSYS2'
         uses: msys2/setup-msys2@v2
         with:
-          msystem: msys
+          msystem: MINGW64
           update: true
           install: >-
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-clang
+            mingw-w64-x86_64-autoconf
+            mingw-w64-x86_64-automake
+            mingw-w64-x86_64-libtool
             git
-            base-devel
             wget
             tar
 
