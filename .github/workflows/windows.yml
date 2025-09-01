@@ -48,9 +48,13 @@ jobs:
         run: |
           cd gengetopt-2.23
           ./configure
+          pwd
+          ls
         shell: bash
 
       - name: Build gengetopt
         run: |
+          pwd
+          ls
           make
         shell: bash
