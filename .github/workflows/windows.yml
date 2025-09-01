@@ -36,28 +36,29 @@ jobs:
 
       - name: Prepare Build Environment
         run: |
-          mkdir -p /c/build
+          mkdir -p /build
+        shell: bash
 
       - name: Download gengetopt
         run: |
-          cd /c/build
+          cd /build
           curl -O https://ftp.gnu.org/gnu/gengetopt/gengetopt-2.23.tar.xz
         shell: bash
 
       - name: Extract gengetopt
         run: |
-          cd /c/build
+          cd /build
           tar xf gengetopt-2.23.tar.xz
         shell: bash
 
       - name: Configure gengetopt
         run: |
-          cd /c/build/gengetopt-2.23
+          cd /build/gengetopt-2.23
           ./configure
         shell: bash
 
       - name: Build gengetopt
         run: |
-          cd /c/build/gengetopt-2.23
+          cd /build/gengetopt-2.23
           make
         shell: bash
