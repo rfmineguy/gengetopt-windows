@@ -1,0 +1,30 @@
+name: Build/Test Windows
+
+on:
+  push:
+    branches:
+      - run-actions
+      - devel
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-gengetopt:
+    runs-on: windows-2025
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Download gengetopt
+        run: |
+          wget https://ftp.gnu.org/gnu/gengetopt/gengetopt-2.23.tar.xz
+          tar xf gengetopt-2.23.tar.xz
+          cd gengetopt-2.23
+          ./configure
+        shell: bash
