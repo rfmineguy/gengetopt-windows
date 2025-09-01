@@ -67,7 +67,7 @@ jobs:
 
       - name: Package gengetopt
         run: |
-          tar -czvf gengetopt-2.23.tar.gz build/gengetopt-2.23/installed
+          tar -czvf gengetopt-2.23.tar.gz -C build/gengetopt-2.23/installed
         shell: msys2 {0}
 
       - name: Upload artifact
