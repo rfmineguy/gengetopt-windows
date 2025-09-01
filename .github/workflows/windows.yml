@@ -56,5 +56,6 @@ jobs:
         run: |
           pwd
           ls
+          cd gengetopt-2.23
           make
         shell: bash
