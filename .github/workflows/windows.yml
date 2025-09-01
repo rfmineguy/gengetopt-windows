@@ -37,26 +37,26 @@ jobs:
 
       - name: Prepare Build Environment
         run: |
-          mkdir -p /build
+          mkdir -p build
         shell: msys2 {0}
 
       - name: Download gengetopt
         run: |
-          cd /build
+          cd build
           curl -O https://ftp.gnu.org/gnu/gengetopt/gengetopt-2.23.tar.xz
         shell: msys2 {0}
 
       - name: Extract gengetopt
         run: |
-          cd /build
+          cd build
           tar xf gengetopt-2.23.tar.xz
         shell: msys2 {0}
 
       - name: Configure gengetopt
         run: |
-          cd /build/gengetopt-2.23
-          mkdir -p /build/installed
-          ./configure --disable-dependency-tracking --prefix=/build/installed
+          cd build/gengetopt-2.23
+          mkdir -p installed
+          ./configure --disable-dependency-tracking --prefix=$PWD/installed
         shell: msys2 {0}
 
       - name: Build gengetopt
@@ -74,4 +74,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: gengetopt-windows
-          path: ${{ github.workspace }}\..\build\installed
+          path: build/gengetopt-2.23/installed
