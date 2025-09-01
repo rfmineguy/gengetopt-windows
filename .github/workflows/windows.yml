@@ -67,11 +67,11 @@ jobs:
 
       - name: Package gengetopt
         run: |
-          cd build/gengetopt-2.23
+          tar -czvf gengetopt-2.23.tar.gz build/gengetopt-2.23/installed
         shell: msys2 {0}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: gengetopt-windows
-          path: build/gengetopt-2.23/installed
+          path: gengetopt-2.23.tar.gz
