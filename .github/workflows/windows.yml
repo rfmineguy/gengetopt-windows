@@ -24,7 +24,7 @@ jobs:
       - name: 'Setup MSYS2'
         uses: msys2/setup-msys2@v2
         with:
-          msystem: windows-2025
+          msystem: msys
           update: true
           install: >-
             git
