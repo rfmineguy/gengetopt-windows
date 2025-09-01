@@ -56,7 +56,7 @@ jobs:
         run: |
           cd build/gengetopt-2.23
           mkdir -p installed
-          ./configure --disable-dependency-tracking --prefix=$PWD/installed
+          ./configure --disable-dependency-tracking --prefix=c/build/installed
         shell: msys2 {0}
 
       - name: Build gengetopt
@@ -67,7 +67,7 @@ jobs:
 
       - name: Package gengetopt
         run: |
-          tar -czvf gengetopt-2.23.tar.gz -C $PWD/installed
+          tar -czvf gengetopt-2.23.tar.gz -C c/build/installed .
         shell: msys2 {0}
 
       - name: Upload artifact
