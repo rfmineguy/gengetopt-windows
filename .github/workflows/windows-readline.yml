@@ -1,0 +1,80 @@
+name: Build Windows Readline
+
+on:
+  push:
+    branches:
+      - run-readline
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-readline:
+    runs-on: windows-2025
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Cache MSYS2 packages
+        uses: actions/cache@v3
+        with:
+          path: C:\msys64\var\cache\pacman\pkg
+          key: msys2-pacman-cache-${{ runner.os }}
+
+      - name: 'Setup MSYS2'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: >-
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-clang
+            mingw-w64-x86_64-texinfo
+            mingw-w64-x86_64-autotools
+            git
+            wget
+            tar
+
+      - name: Prepare Build Environment
+        run: |
+          mkdir -p build
+        shell: msys2 {0}
+
+      - name: Download readline
+        run: |
+          cd build
+          curl -O https://ftp.gnu.org/gnu/readline/readline-8.3.tar.gz
+        shell: msys2 {0}
+
+      - name: Extract readline
+        run: |
+          cd build
+          tar xf readline-8.3.tar.gz
+        shell: msys2 {0}
+
+      - name: Configure readline
+        run: |
+          cd build/readline-8.3
+          mkdir -p installed
+          ./configure --disable-dependency-tracking --prefix=$PWD/installed
+        shell: msys2 {0}
+
+      - name: Build readline
+        run: |
+          cd build/readline-8.3
+          make install
+        shell: msys2 {0}
+
+      - name: Package readline
+        run: |
+          ls build
+          ls build/readline-8.3
+          tar -czvf readline-8.3.tar.gz -C $PWD/build/gengetopt-8.3/installed .
+        shell: msys2 {0}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: readline-windows
+          path: readline-8.3.tar.gz
