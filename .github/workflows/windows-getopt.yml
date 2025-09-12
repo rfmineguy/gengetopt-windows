@@ -1,14 +1,9 @@
-name: Build/Test Windows
+name: Build Windows Getopt
 
 on:
   push:
     branches:
-      - run-actions
-      - devel
-      - main
-  pull_request:
-    branches:
-      - main
+      - run-getopt
   workflow_dispatch:
 
 permissions:
